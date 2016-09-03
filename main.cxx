@@ -25,16 +25,77 @@
 #include <iostream>
 #include <cmath>
 #include <stdio.h>
+#include <stdlib.h>
 #define Pi 3.1415926
-#define LENGTH_MAX (1024*1024)
+#define LENGTH_MAX (1025)
 using namespace std;
 double cacul_value[LENGTH_MAX];
+int a[LENGTH_MAX] = { 5,9,4,8,3,7,2,6,1,0};
+int b[LENGTH_MAX];
+int c0[LENGTH_MAX];
+
+void switch_arr(int i ,int count){
+	printf("pos：%d cnt:%d ", i, count);
+	for(int j = 0; j <= count/2; j++){
+		int temp  = a[i+j];
+		a[i+j] = a [ i + count - j];
+		a [ i + count - j] = temp;
+		printf("after switch %d %d \n", a[i+j],a [ i + count - j]);
+		}
+	}
+void TestSort(){
+	for (int i = 0; i < LENGTH_MAX; i++){
+		a[i] = rand()%LENGTH_MAX;
+		cout << a[i]<<endl;
+		}
+for (int k = 0; k < LENGTH_MAX; k++){
+	for (int j = 0; j < LENGTH_MAX - 1; j++){
+		if ( a[j] > a[j+1] ) b[j] = 1;
+		else b[j] = 0;
+		cout<<b[j];
+		}
+	int beg = 0;
+	int count = 0;
+	int beg_0 = 0;
+	int count_0 = 0;
+	bool flag = true;
+	for (int j = 0; j < LENGTH_MAX - 1; j++){
+		if ( b[j] == 1) {
+			if (!count) beg = j;
+			count ++;
+			if (j == LENGTH_MAX - 2){
+				switch_arr(beg,count);
+				count = 0;
+				flag = false;
+			}
+		}else {
+			if (count > 0){
+				switch_arr(beg,count);
+				count = 0;
+				flag = false;
+			}
+		}
+	}
+
+printf("\n\nafter k = %d\n", k );
+	if(flag) break;
+	for (int i = 0; i < LENGTH_MAX; i++){
+		//a[i] = rand()%LENGTH_MAX;
+		//cout << a[i]<<endl;
+		}
+}
+}
 void Test(int a){
     double max = 100;
     int ret = max*tanh(a/max);
     printf("ret:%d\n", ret);
+
     double rate = tanh(a/max);
-    printf("rete:%lf", rate);
+    printf("rete:%lf\n", rate);
+    
+    double reduce;
+    reduce = tanh(a/max);
+    printf("reduce:%lf\n", reduce);
 }
 void testMathFun(){
 	clock_t t_beg,t_end;
@@ -54,7 +115,9 @@ void testMathFun(){
 int main(int argc, char **argv)
 {
 	//testMathFun();
-	Test(50);
+	//Test(50);
+	//TestSort();
+	cout<<log(1000)<<endl;
 	return 0;
 }
 
